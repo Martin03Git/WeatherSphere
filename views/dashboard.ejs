@@ -1,0 +1,31 @@
+<%- include('partials/header.ejs') %>
+
+    <section class="date">
+      <div id="clock"></div>
+      <% console.log("dashboard", locals.date) %>
+      <div id="date"><%= `${locals.date.currentDay}, ${date.currentDate} ${date.currentMonth} ${date.currentYear}` %></div>
+    </section>
+
+    <section class="current-weather">
+      <img src="https://openweathermap.org/img/wn/<%= currentWeather.weather[0].icon %>@2x.png" alt="">
+      <h3><%= currentWeather.weather[0].main %></h3>
+      <p><%= currentWeather.weather[0].description %> </p>
+      <p><%= currentWeather.name %></p>
+      <p><%= currentWeather.main.temp %>&deg;C</p>
+    </section>
+
+    <section class="daily-forecast">
+      <% for( let i = 0; i < fiveDaysForecast.length; i++ ) { %>
+        <div class="day">
+          <h6><%= date.week[(new Date().getDay() + i) % date.week.length] %></h6>
+          <img src="https://openweathermap.org/img/wn/<%= fiveDaysForecast[i].weather[0].icon %>.png" alt="">
+          <p><%= fiveDaysForecast[i].weather[0].description %></p>
+          <p><%= fiveDaysForecast[i].main.temp_max %>&deg;C</p>
+        </div>
+      <% } %>
+    </section>
+    
+    <div class="space1"></div>
+    <div class="space2"></div>
+
+<%- include('partials/footer.ejs') %>

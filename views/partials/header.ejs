@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WeatherSphere</title>
+  <link rel="stylesheet" type="text/css" href="styles/style.css">
+  <script src="scripts/getUserLocation.js"></script>
+  <script>
+    // get current time
+    function clock() {
+      const day = new Date();
+      let hour = day.getHours();
+      let minute = day.getMinutes();
+      let second = day.getSeconds();
+      document.getElementById("clock").innerHTML = (hour < 10 ? "0" + hour : hour) + " : " + (minute < 10 ? "0" + minute : minute) + " : " + (second < 10 ? "0" + second : second);
+    };
+
+  </script>
+</head>
+<body onload="clock(); setInterval('clock()', 1000);">
+  
+  <div class="container">

@@ -1,52 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WeatherSphere</title>
-  <link rel="stylesheet" type="text/css" href="styles/style.css">
-  <script>
-    // get current time
-    function clock() {
-      const day = new Date();
-      let hour = day.getHours();
-      let minute = day.getMinutes();
-      let second = day.getSeconds();
-      document.getElementById("clock").innerHTML = (hour < 10 ? "0" + hour : hour) + " : " + (minute < 10 ? "0" + minute : minute) + " : " + (second < 10 ? "0" + second : second);
-    };
+<%- include('partials/header.ejs') %>
 
-  </script>
-</head>
-<body onload="clock(); setInterval('clock()', 1000);">
-  
-  <div class="container">
-    <section class="date">
-      <div id="clock"></div>
-      <div id="date"><%= `${date.currentDay}, ${date.currentDate} ${date.currentMonth} ${date.currentYear}` %></div>
-    </section>
+<h1></h1>
 
-    <section class="current-weather">
-      <img src="https://openweathermap.org/img/wn/<%= currentWeather.weather[0].icon %>@2x.png" alt="">
-      <h3><%= currentWeather.weather[0].main %></h3>
-      <p><%= currentWeather.weather[0].description %> </p>
-      <p><%= currentWeather.name %></p>
-      <p><%= currentWeather.main.temp %>&deg;C</p>
-    </section>
-
-    <section class="daily-forecast">
-      <% for( let i = 0; i < fiveDaysForecast.length; i++ ) { %>
-        <div class="day">
-          <h6><%= date.week[(new Date().getDay() + i) % date.week.length] %></h6>
-          <img src="https://openweathermap.org/img/wn/<%= fiveDaysForecast[i].weather[0].icon %>.png" alt="">
-          <p><%= fiveDaysForecast[i].weather[0].description %></p>
-          <p><%= fiveDaysForecast[i].main.temp_max %>&deg;C</p>
-        </div>
-      <% } %>
-    </section>
-    
-    <div class="space1"></div>
-    <div class="space2"></div>
-  </div>
-
-</body>
-</html>
+<%- include('partials/footer.ejs') %>

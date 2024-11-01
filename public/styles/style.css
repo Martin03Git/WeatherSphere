@@ -1,0 +1,65 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background-color: #160D08;
+  font-size: 20px;
+  color: #fff;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 2fr 2fr 1fr;
+  grid-template-areas: 
+    "date space1 current-weather"
+    "space2 space2 space2"
+    "daily-forecast daily-forecast daily-forecast";
+  width: 70%;
+  height: 80%;
+  /* background-image: url("../images/little-plant.jpg");
+  background-size: cover;
+  background-position: center;
+  border-radius: 5px; */
+}
+
+.container * {
+  border: 1px solid yellow;
+}
+
+.container .date {
+  grid-area: date;
+}
+
+.container .current-weather {
+  grid-area: current-weather;
+}
+
+.container .daily-forecast {
+  grid-area: daily-forecast;
+}
+
+.container .space1 {
+  grid-area: space1;
+}
+
+.container .space2 {
+  grid-area: space2;
+}
+
+
+
+/* Five Day Weather Forecast */
+.daily-forecast {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 1fr;
+}

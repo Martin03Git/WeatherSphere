@@ -1,3 +1,9 @@
+
+// deleting "dataSent" item from sessionStorage
+window.addEventListener("beforeunload", () => {
+  sessionStorage.removeItem("dataSent");
+});
+
 document.addEventListener("DOMContentLoaded", () => {
   if (navigator.geolocation && !sessionStorage.getItem("dataSent")) {
     navigator.geolocation.getCurrentPosition(

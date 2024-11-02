@@ -50,16 +50,22 @@ app.post("/weather", async (req, res) => {
     // fetch current weather data from OpenWeather API
     const currentWeatherForecast = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${APIKey}`);
     const currentWeatherInfo = currentWeatherForecast.data;
-    // console.log(currentWeatherInfo); 
+    
 
     // fetch 5 days weather forecast
     const fiveDaysForecast = await axios.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=metric&appid=${APIKey}`);
     const fiveDaysWeatherInfo = fiveDaysForecast.data;
     const filteredFiveDaysWeatherInfo = fiveDaysWeatherInfo.list.filter(item => item.dt_txt.includes('12:00:00'));
-    // console.log(filteredFiveDaysWeatherInfo[1]);
+    
+
+    // fetch random quote from ZenQuotes API
+    const quote = await axios.get('https://zenquotes.io/api/random');
+    const dailyQuote = quote.data;
+    // console.log(dailyQuote); 
   
     res.render('dashboard', {
       date: date,
+      dailyQuote: dailyQuote,
       currentWeather: currentWeatherInfo,
       fiveDaysForecast: filteredFiveDaysWeatherInfo,
     });

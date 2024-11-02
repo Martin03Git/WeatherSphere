@@ -2,8 +2,10 @@
 
     <section class="date">
       <div id="clock"></div>
-      <% console.log("dashboard", locals.date) %>
       <div id="date"><%= `${locals.date.currentDay}, ${date.currentDate} ${date.currentMonth} ${date.currentYear}` %></div>
+      <div class="quote">
+        <blockquote>&ldquo;<%= dailyQuote[0].q %>.&rdquo; &mdash; <footer><%= dailyQuote[0].a %></footer></blockquote>"
+      </div>
     </section>
 
     <section class="current-weather">

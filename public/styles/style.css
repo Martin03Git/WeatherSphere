@@ -12,7 +12,7 @@ body {
   height: 100vh;
   background-color: #160D08;
   font-size: 20px;
-  color: #fff;
+  color: #fbeeeb;
 }
 
 .container {
@@ -24,28 +24,130 @@ body {
     "space2 space2 space2"
     "daily-forecast daily-forecast daily-forecast";
   width: 70%;
-  height: 80%;
-  /* background-image: url("../images/little-plant.jpg");
+  /* max-width: 950px; */
+  height: 90%;
+  /* max-height: 580px; */
+  padding: 15px;
+  background-image: url("../images/little-plant.jpg");
   background-size: cover;
   background-position: center;
-  border-radius: 5px; */
+  background-attachment: fixed;
+  border-radius: 20px;
 }
 
-.container * {
-  border: 1px solid yellow;
+.date,
+.current-weather,
+.day {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #fbeeeb05;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.267);
+  backdrop-filter: blur(6.3px);
+  -webkit-backdrop-filter: blur(6.3px);
+  border: 1px solid rgba(255, 255, 255, 0.137);
 }
 
-.container .date {
+.date,
+.current-weather {
+  width: 230px;
+}
+
+
+
+/* Date and quote */
+.date {
   grid-area: date;
+  /* border: 1px solid yellow; */
 }
 
-.container .current-weather {
+.date #clock {
+  font-size: 1.4em;
+}
+
+.date #date {
+  font-size: 0.9em;
+}
+
+.date blockquote p {
+  margin-bottom: 10px;
+  text-align: center;
+  font-style: italic;
+  font-size: 0.9em;
+}
+
+.date footer {
+  /* border: 1px solid yellow; */
+  text-align: right;
+  font-style: inherit;
+  font-size: 0.8em;
+}
+
+
+
+
+
+
+.current-weather {
+  /* border: 1px solid yellow; */
   grid-area: current-weather;
+  justify-self: end;
+  align-items: end;
+  text-align: right;
 }
 
-.container .daily-forecast {
-  grid-area: daily-forecast;
+.current-weather img {
+  max-width: 200px;
+  /* border: 1px solid yellow; */
 }
+
+.current-weather h3 {
+  font-size: 1.4em;
+}
+
+.current-weather p {
+  margin-bottom: 5px;
+}
+
+
+
+
+
+/* Five Day Weather Forecast */
+.daily-forecast {
+  /* border: 1px solid yellow; */
+  grid-area: daily-forecast;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 15px;
+  font-size: 0.8em;
+}
+
+.daily-forecast .day {
+  align-items: center;
+  width: 120px;
+  /* border: 1px solid yellow; */
+}
+
+.daily-forecast .day:first-child {
+  transform: scale(1.13);
+}
+
+.daily-forecast .day img {
+  max-width: 50px;
+}
+
+.daily-forecast .day p {
+  margin-bottom: 5px;
+}
+
+
+
+
+
 
 .container .space1 {
   grid-area: space1;
@@ -57,9 +159,89 @@ body {
 
 
 
-/* Five Day Weather Forecast */
-.daily-forecast {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: 1fr;
+
+/* Responsive Breakpoint */
+
+/* deivce with 1024px display and more */
+@media screen and (max-width: 1024px) {
+  .container {
+    grid-template-rows: 1fr 2fr 1fr;
+  }
+
+  .daily-forecast .day {
+    width: 150px;
+  } 
+}
+
+
+/* Tablet */
+@media screen and (max-width: 768px) {
+  .container {
+    min-height: 80%;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 60px 1fr minmax(1fr, auto);
+    grid-template-areas: 
+      "date  current-weather"
+      "space2 space2"
+      "daily-forecast daily-forecast";
+  }
+
+
+
+  .current-weather img {
+    width: 150px;
+    /* border: 1px solid yellow; */
+  }
+
+
+  .daily-forecast {
+    gap: 20px;
+    padding: 10px;
+  }
+
+  .daily-forecast .day:first-child {
+    transform: scale(1);
+  }
+}
+
+
+
+/* Mobile */
+@media screen and (max-width: 580px) {
+  body {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .container {
+    width: 100%;
+    height: 100vh;
+    overflow-y: auto;
+    /* min-height: fit-content; */
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: minmax(1fr, 200px) 1fr minmax(1fr, 300px);
+    grid-template-areas: 
+      "current-weather current-weather"
+      "date date"
+      "daily-forecast daily-forecast";
+    row-gap: 20px;
+  }
+
+    
+  .date,
+  .current-weather {
+    width: 100%;
+    height: fit-content;
+  }
+
+  .date {
+    min-height: 300px;
+  }
+
+  .date #clock {
+    justify-self: start;}
+
+  .daily-forecast .day {
+    width: 45%;
+  }
 }

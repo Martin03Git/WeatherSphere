@@ -4,6 +4,7 @@ window.addEventListener("beforeunload", () => {
   sessionStorage.removeItem("dataSent");
 });
 
+// sent user location and retrieve weather data
 document.addEventListener("DOMContentLoaded", () => {
   if (navigator.geolocation && !sessionStorage.getItem("dataSent")) {
     navigator.geolocation.getCurrentPosition(

@@ -3,6 +3,7 @@ import axios from "axios";
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import path from "path";
+import 'dotenv/config';
 
 const __fileName = fileURLToPath(import.meta.url);
 const __dirname = dirname(__fileName);
@@ -15,7 +16,7 @@ app.use(express.json()); //express middleware for parsing JSON
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-const APIKey = "";
+const APIKey = process.env.APIKey;
 // let latitude = null;
 // let longitude = null;
 

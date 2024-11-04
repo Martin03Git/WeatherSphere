@@ -1,24 +1,22 @@
 import express from "express";
 import axios from "axios";
+import 'dotenv/config';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import path from "path";
-import 'dotenv/config';
 
 const __fileName = fileURLToPath(import.meta.url);
 const __dirname = dirname(__fileName);
 
 const app = express();
-const port = 3100;
+const PORT = process.env.PORT;
 
 app.use(express.static("public"));
 app.use(express.json()); //express middleware for parsing JSON
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-const APIKey = process.env.APIKey;
-// let latitude = null;
-// let longitude = null;
+const API_KEY = process.env.API_KEY;
 
 
 // Get current day
@@ -49,12 +47,12 @@ app.post("/weather", async (req, res) => {
 
   try {
     // fetch current weather data from OpenWeather API
-    const currentWeatherForecast = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${APIKey}`);
+    const currentWeatherForecast = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${API_KEY}`);
     const currentWeatherInfo = currentWeatherForecast.data;
     
 
     // fetch 5 days weather forecast
-    const fiveDaysForecast = await axios.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=metric&appid=${APIKey}`);
+    const fiveDaysForecast = await axios.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=metric&appid=${API_KEY}`);
     const fiveDaysWeatherInfo = fiveDaysForecast.data;
     const filteredFiveDaysWeatherInfo = fiveDaysWeatherInfo.list.filter(item => item.dt_txt.includes('12:00:00'));
     
@@ -62,7 +60,6 @@ app.post("/weather", async (req, res) => {
     // fetch random quote from ZenQuotes API
     const quote = await axios.get('https://zenquotes.io/api/random');
     const dailyQuote = quote.data;
-    // console.log(dailyQuote); 
   
     res.render('dashboard', {
       date: date,
@@ -77,6 +74,6 @@ app.post("/weather", async (req, res) => {
 
 });
 
-app.listen(port, function() {
-  console.log(`Server running on port ${port}`);
+app.listen(PORT, function() {
+  console.log(`Server running on port ${PORT}`);
 });

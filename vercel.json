@@ -10,6 +10,19 @@
     {
       "src": "/(.*)",
       "dest": "index.js"
+    }, {
+      "src": "/styles/style.css",
+      "dest": "/styles/style.css",
+      "headers": {
+        "Content-Type": "text/css"
+      }
+    },
+    {
+      "src": "/scripts/getUserLocation.js",
+      "dest": "/scripts/getUserLocation.js",
+      "headers": {
+        "Content-Type": "application/javascript"
+      }
     }
   ]
 }

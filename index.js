@@ -1,20 +1,15 @@
-import express from "express";
-import axios from "axios";
-import 'dotenv/config';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
-import path from "path";
-
-const __fileName = fileURLToPath(import.meta.url);
-const __dirname = dirname(__fileName);
+const express = require('express');
+const axios = require('axios');
+const ejs = require('ejs');
+const path = require('path');
 
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 
 app.use(express.static("public"));
 app.use(express.json()); //express middleware for parsing JSON
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'views/'));
 
 const API_KEY = process.env.API_KEY;
 
@@ -33,8 +28,10 @@ const date = {
 };
 
 app.get("/", (req, res) => {
+  // res.send("hello world");
   res.render('index');
 });
+
 
 
 
@@ -77,3 +74,4 @@ app.post("/weather", async (req, res) => {
 app.listen(PORT, function() {
   console.log(`Server running on port ${PORT}`);
 });
+

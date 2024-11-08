@@ -1,3 +1,4 @@
+
 // Loads environment variables from a .env file, useful for storing sensitive information like API keys
 require('dotenv').config();
 const express = require('express');

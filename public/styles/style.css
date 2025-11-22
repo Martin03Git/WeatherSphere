@@ -1,0 +1,247 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #160D08;
+  background-image: url("../images/little-plant.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: #fbeeeb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Glassmorphism Panel Base Class */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-panel:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Main Container */
+.dashboard-container {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Top Section: Date & Current Weather */
+.top-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+/* Date Card */
+.date-card {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 250px;
+}
+
+.clock {
+  font-size: 3rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+
+.date-text {
+  font-size: 1.1rem;
+  font-weight: 300;
+  opacity: 0.9;
+}
+
+.quote-wrap {
+  margin-top: 24px;
+  border-left: 3px solid rgba(255, 255, 255, 0.3);
+  padding-left: 16px;
+}
+
+.quote-text p {
+  font-style: italic;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+
+.quote-text footer {
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+/* Current Weather Card */
+.current-weather-card {
+  padding: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: right;
+}
+
+.weather-icon img {
+  width: 150px;
+  height: 150px;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
+}
+
+.weather-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.weather-main {
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
+.weather-desc {
+  font-size: 1.1rem;
+  text-transform: capitalize;
+  opacity: 0.9;
+  margin-bottom: 8px;
+}
+
+.location-name {
+  font-size: 1rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.location-name::before {
+  content: '📍';
+  font-size: 1.2rem;
+}
+
+.temperature {
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-top: 12px;
+  background: linear-gradient(to bottom, #fff, #ffffffaa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Forecast Section */
+.forecast-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px;
+}
+
+.forecast-card {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+}
+
+.forecast-day {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.forecast-card img {
+  width: 64px;
+  height: 64px;
+}
+
+.forecast-desc {
+  font-size: 0.85rem;
+  opacity: 0.8;
+  text-transform: capitalize;
+  min-height: 2.5em; /* Ensure alignment */
+}
+
+.forecast-temp {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: auto;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .top-section {
+    grid-template-columns: 1fr;
+  }
+
+  .current-weather-card {
+    flex-direction: row-reverse;
+    text-align: left;
+    justify-content: space-between;
+  }
+  
+  .weather-info {
+    align-items: flex-start;
+  }
+
+  .location-name {
+    justify-content: flex-start;
+  }
+
+  .temperature {
+    font-size: 3.5rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  body {
+    padding: 12px;
+    align-items: flex-start;
+  }
+
+  .clock {
+    font-size: 2.5rem;
+  }
+
+  .current-weather-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 16px;
+  }
+
+  .weather-info {
+    align-items: center;
+  }
+
+  .location-name {
+    justify-content: center;
+  }
+
+  .forecast-section {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

@@ -1,0 +1,43 @@
+<%- include('partials/header.ejs') %>
+
+<main class="dashboard-container">
+  <div class="top-section">
+    <section class="date-card glass-panel">
+      <div class="date-wrap">
+        <div id="clock" class="clock"></div>
+        <div id="date" class="date-text"><%= `${locals.date.currentDay}, ${date.currentDate} ${date.currentMonth} ${date.currentYear}` %></div>
+      </div>
+      <div class="quote-wrap">
+        <blockquote class="quote-text">
+          <p>&ldquo;<%= dailyQuote[0].q %>.&rdquo;</p>
+          <footer>&mdash; <%= dailyQuote[0].a %></footer>
+        </blockquote>
+      </div>
+    </section>
+
+    <section class="current-weather-card glass-panel">
+      <div class="weather-icon">
+        <img src="https://openweathermap.org/img/wn/<%= currentWeather.weather[0].icon %>@4x.png" alt="<%= currentWeather.weather[0].description %>">
+      </div>
+      <div class="weather-info">
+        <h3 class="weather-main"><%= currentWeather.weather[0].main %></h3>
+        <p class="weather-desc"><%= currentWeather.weather[0].description %></p>
+        <p class="location-name"><%= currentWeather.name %></p>
+        <p class="temperature"><%= Math.round(currentWeather.main.temp) %>&deg;C</p>
+      </div>
+    </section>
+  </div>
+
+  <section class="forecast-section">
+    <% for( let i = 0; i < fiveDaysForecast.length; i++ ) { %>
+      <div class="forecast-card glass-panel">
+        <h5 class="forecast-day"><%= date.week[(new Date().getDay() + i) % date.week.length] %></h5>
+        <img src="https://openweathermap.org/img/wn/<%= fiveDaysForecast[i].weather[0].icon %>@2x.png" alt="<%= fiveDaysForecast[i].weather[0].description %>">
+        <p class="forecast-desc"><%= fiveDaysForecast[i].weather[0].description %></p>
+        <p class="forecast-temp"><%= Math.round(fiveDaysForecast[i].main.temp_max) %>&deg;C</p>
+      </div>
+    <% } %>
+  </section>
+</main>
+
+<%- include('partials/footer.ejs') %>
